@@ -6,9 +6,11 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:36:50 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/09 18:49:36 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/13 14:46:30 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_is_negative(char *str, int *sign)
 {
@@ -18,7 +20,7 @@ char	*ft_is_negative(char *str, int *sign)
 	i = 0;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v' || str[i] == '\n')
 		i++;
-	while (str[i] == '-' || str[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
 			*sign *= -1;
@@ -27,7 +29,7 @@ char	*ft_is_negative(char *str, int *sign)
 	return (&str[i]);
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	res;
@@ -35,7 +37,7 @@ int	ft_atoi(char *str)
 
 	i = 0;
 	res = 0;
-	str = ft_is_negative(str, &sign);
+	str = ft_is_negative((char *)str, &sign);
 	while (str[i] != '\0')
 	{
 		if (str[i] >= '0' && str[i] <= '9')

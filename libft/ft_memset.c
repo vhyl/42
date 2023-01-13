@@ -9,8 +9,9 @@
 /*   Updated: 2023/01/12 17:18:18 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <string.h>
+
+#include "libft.h"
+
 void	*ft_memset(void *s, int c, size_t n)
 {
 	int	i;
@@ -22,16 +23,4 @@ void	*ft_memset(void *s, int c, size_t n)
 		i++;
 	}
 	return (s);
-}
-
-int main () {
-   char str[50];
-
-   strcpy(str,"This is string.h library function");
-   puts(str);
-
-   ft_memset(str,'x',7);
-   puts(str);
-
-   return(0);
 }

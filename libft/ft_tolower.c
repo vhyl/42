@@ -6,20 +6,15 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:32:05 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/09 14:35:00 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/13 15:05:25 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_tolower(char *str)
-{
-	int	i;
+#include "libft.h"
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] += 32;
-		i++;
-	}
-	return (str);
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
 }

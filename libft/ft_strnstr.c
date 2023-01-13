@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	compare(const char *str, const char *to_find)
 {
 	while (*str && *to_find)

@@ -9,8 +9,9 @@
 /*   Updated: 2023/01/12 17:55:08 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <string.h>
+
+#include "libft.h"
+
 char	*ft_strchr(const char *str, int c)
 {
 	while (*str)
@@ -20,14 +21,4 @@ char	*ft_strchr(const char *str, int c)
 		str++;
 	}
 	return ((char *)str);
-}
-
-int main ()
-{
-  char str[] = "This is a sample string";
-  char * pch;
-  printf ("Looking for the 's' character in \"%s\"...\n",str);
-  pch=ft_strchr(str,'\0');
-  printf("\n%s", pch);
-  return 0;
 }

@@ -6,11 +6,13 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:52:30 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/09 18:59:38 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/13 14:58:42 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+#include "libft.h"
+
+int	ft_strlen(const char *str)
 {
 	int	i;
 

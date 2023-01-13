@@ -6,11 +6,13 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:24:23 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/09 20:23:33 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/13 15:06:33 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(char *s, int c)
+#include "libft.h"
+
+char	*ft_strrchr(const char *s, int c)
 {
 	char	*last;
 
