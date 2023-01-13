@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:24:23 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/13 15:06:33 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/13 16:25:34 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ char	*ft_strrchr(const char *s, int c)
 {
 	char	*last;
 
-	last = 0;
+	last = NULL;
 	while (*s)
 	{
 		if (*s == c)
-			last = s;
+			last = (char *)s;
 		s++;
 	}
+	if (*s == c)
+		return ((char *)s);
 	return (last);
 }

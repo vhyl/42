@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 22:26:18 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/09 22:46:43 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/13 21:36:08 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int			i;
-	const char	*str;
+	size_t			i;
+	const char		*str;
 
 	i = 0;
 	str = (const char *)s;
