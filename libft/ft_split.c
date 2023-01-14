@@ -6,85 +6,71 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:57:01 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/14 15:48:26 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/14 21:55:31 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_words(char *s, char c)
+int	count_words(const char *s, char c)
 {
 	int	i;
 	int	count;
 
-	i = 0;
+	if (s == 0 || s[0] == 0)
+		return (0);
+	i = 1;
 	count = 0;
-	while (s[i++] != '\0')
+	if (s[0] != c)
+		count++;
+	while (s[i] != '\0')
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != '\0')
+		if (s[i] != c && s[i - 1] == c)
 			count++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
+		i++;
 	}
 	return (count);
 }
 
-char	**allocate(char *s, char c)
+int	count_chars(const char *s, char c, int i)
 {
-	int		size;
-	char	**res;
-	int		i;
-	int		j;
+	int	count;
 
-	size = count_words(s, c);
-	res = malloc(sizeof(char *) * (size + 1));
-	i = 0;
-	size = 0;
-	j = 0;
-	while (s[i] != '\0')
+	count = 0;
+	while (s[i] == c && s[i])
+		i++;
+	while (s[i] && s[i] != c)
 	{
-		if (s[i] != c)
-			size++;
-		else
-		{
-			while (s[i] == c)
-				i++;
-			res[j++] = malloc(sizeof(char) * size);
-			size = 1;
-		}
+		count++;
 		i++;
 	}
-	res[j] = malloc(sizeof(char));
-	return (res);
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	int	i;
-	int	j;
-	int	k;
+	int		vars[3];
 
-	res = allocate((char *)s, c);
-	i = 0;
-	j = 0;
-	k = 0;
-	while (s[i] != '\0')
+	if (s == 0)
+		return (0);
+	res = malloc(sizeof(char *) * count_words(s, c) + 1);
+	if (!res)
+		return (NULL);
+	vars[0] = -1;
+	vars[2] = 0;
+	while (++vars[0] < count_words(s, c))
 	{
-		if (s[i] != c)
-			res[j][k++] = s[i];
-		else
-		{
-			while (s[i] == c)
-				i++;
-			j++;
-			i--;
-			k = 0;
-		}
-		i++;
+		vars[1] = 0;
+		res[vars[0]] = malloc(count_chars(s, c, vars[2]) + 1);
+		if (!res[vars[0]])
+			return (NULL);
+		while (s[vars[2]] != '\0' && s[vars[2]] == c)
+			vars[2]++;
+		while (s[vars[2]] != c && s[vars[2]] != '\0')
+			res[vars[0]][vars[1]++] = s[vars[2]++];
+		res[vars[0]][vars[1]] = '\0';
 	}
-	res[++j] = 0;
+	res[vars[0]] = NULL;
 	return (res);
 }

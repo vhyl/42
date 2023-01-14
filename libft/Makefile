@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vhyl <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/13 15:36:30 by vhyl              #+#    #+#              #
-#    Updated: 2023/01/14 15:17:05 by vhyl             ###   ########.fr        #
+#    Created: 2023/01/14 22:53:02 by vhyl              #+#    #+#              #
+#    Updated: 2023/01/14 23:39:26 by vhyl             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,30 +16,31 @@ SRCS = ft_atoi.c ft_strnstr.c ft_memmove.c ft_memchr.c ft_strrchr.c \
 	ft_isalpha.c ft_memset.c ft_isascii.c ft_strlcpy.c ft_memcpy.c \
 	ft_strncmp.c ft_strdup.c ft_calloc.c ft_itoa.c ft_putchar_fd.c \
 	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_substr.c \
-	ft_strjoin.c ft_strmapi.c ft_striteri.c ft_split.c
+	ft_strjoin.c ft_strmapi.c ft_striteri.c ft_split.c \
+	ft_lstnew.c ft_lstsize.c ft_lstlast.c ft_lstadd_front.c \
+	ft_lstadd_back.c
 
 OBJS = ${SRCS:.c=.o}
 
-PRE = ./srcs/
-
-HEAD = ./includes/
+INC = libft.h
 
 NAME = libft.a
 
-AR = ar rc
+LIBC = ar rc
+
+LIBR = ranlib
 
 RM = rm -f
 
-GCC = gcc
-
 CFLAGS = -Wall -Wextra -Werror
 
+.c.o: 
+	cc ${CFLAGS} -c $< -o ${<:.c=.o} -I ${INC}
+${NAME}: ${OBJS}
+		${LIBC} ${NAME} ${OBJS}	
+		${LIBR} ${NAME}
 all: ${NAME}
 
-.c.o: 
-	${GCC} ${CFLAGS} -c -I ${HEAD} $< -o ${<:.c=.o}
-${NAME}: ${OBJS}
-		${AR} ${NAME} ${OBJS}	
 clean:
 	rm -f ${OBJS}
 fclean: clean
