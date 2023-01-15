@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:57:01 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/14 21:55:31 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/15 15:34:04 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	count_words(const char *s, char c)
 	int	i;
 	int	count;
 
-	if (s == 0 || s[0] == 0)
+	if (!s || !s[0])
 		return (0);
 	i = 1;
 	count = 0;
@@ -54,7 +54,7 @@ char	**ft_split(char const *s, char c)
 
 	if (s == 0)
 		return (0);
-	res = malloc(sizeof(char *) * count_words(s, c) + 1);
+	res = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!res)
 		return (NULL);
 	vars[0] = -1;

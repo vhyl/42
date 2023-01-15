@@ -17,6 +17,7 @@ char	*ft_strrchr(const char *s, int c)
 	char	*last;
 
 	last = NULL;
+	c = c % 128;
 	while (*s)
 	{
 		if (*s == c)
