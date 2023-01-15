@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:59:32 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/15 14:20:09 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/15 20:03:54 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		return (NULL);
 	if (*little == '\0')
 		return ((char *)big);
-	while (big[i] != '\0')
+	while (big[i] != '\0' && i <= len - ft_strlen(little))
 	{
-		if (big[i] == *little && compare(&big[i], little)
-			&& i < len - ft_strlen(little))
+		if (compare(&big[i], little))
 			return ((char *)&big[i]);
 		i++;
 	}

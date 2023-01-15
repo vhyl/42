@@ -6,67 +6,46 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:56:07 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/15 16:13:09 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/15 20:11:28 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_size(char const *s1, char const *set)
+char	*empty()
 {
-	int	i;
-	int	j;
-	int	count;
+	char	*res;
 
-	i = 0;
-	count = 0;
-	while (s1[i++])
-	{
-		j = 0;
-		while (set[j++])
-			if (s1[i] == set[j])
-				count++;
-	}
-	return (ft_strlen(s1) - count);
-}
-
-int	is_in_set(char a, char const *set)
-{
-	int	i;
-
-	i = 0;
-	if (a == '\0')
-		return (1);
-	while (set[i])
-	{
-		if (a == set[i])
-			return (1);
-		i++;
-	}
-	return (0);
+	res = malloc(sizeof(char));
+	if (!res)
+		return (NULL);
+	res[0] = '\0';
+	return (res);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		size;
-	int		i;
-	int		a;
 	char	*res;
+	int	start;
+	int	end;
 
 	if (!s1 || !set)
 		return (NULL);
-	size = count_size(s1, set);
-	res = malloc(size + 1);
-	i = 0;
-	a = 0;
+	if (*set == 0)
+		return (ft_strdup(s1));
+	start = 0;
+	end = ft_strlen(s1) - 1;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+        while (s1[end] && ft_strchr(set, s1[end]))
+		end--;
+	size = (end - start) + 1;
+	if (size < 1)
+		return (empty());
+	res = malloc(size * sizeof(char));
 	if (!res)
 		return (NULL);
-	while (s1[i])
-	{
-		if (!(is_in_set(s1[i], set)))
-			res[a++] = s1[i];
-		i++;
-	}
-	res[a] = '\0';
+	res = ft_substr(s1, start, size);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:26:04 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/14 23:39:12 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/15 16:12:46 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-int		ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
@@ -55,7 +55,12 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	**ft_split(char const *s, char c);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_front(t_list ** lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-int	ft_lstsize(t_list *lst);
+int		ft_lstsize(t_list *lst);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char	*ft_strtrim(char const *s1, char const *set);
 #endif
