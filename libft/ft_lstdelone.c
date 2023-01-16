@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 11:54:58 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/15 11:58:29 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/15 22:23:47 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (!lst)
 		return ;
-	del((void *)lst);
+	del(lst->content);
+	free(lst);
 }

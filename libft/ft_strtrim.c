@@ -6,13 +6,13 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:56:07 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/15 20:11:28 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/15 22:26:26 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*empty()
+char	*empty(void)
 {
 	char	*res;
 
@@ -27,8 +27,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		size;
 	char	*res;
-	int	start;
-	int	end;
+	int		start;
+	int		end;
 
 	if (!s1 || !set)
 		return (NULL);
@@ -38,7 +38,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1) - 1;
 	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-        while (s1[end] && ft_strchr(set, s1[end]))
+	while (s1[end] && ft_strchr(set, s1[end]))
 		end--;
 	size = (end - start) + 1;
 	if (size < 1)
