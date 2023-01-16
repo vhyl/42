@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 22:29:47 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/15 15:55:48 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/16 19:44:07 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ char	*zero_min(int n, char *str)
 	}
 	else if (n == -2147483648)
 	{
-		str[0] = '-';
-		str[1] = '2';
-		str[2] = '1';
-		str[3] = '4';
-		str[4] = '7';
+		str[0] = '8';
+		str[1] = '4';
+		str[2] = '6';
+		str[3] = '3';
+		str[4] = '8';
 		str[5] = '4';
-		str[6] = '8';
-		str[7] = '3';
-		str[8] = '6';
-		str[9] = '4';
-		str[10] = '8';
+		str[6] = '7';
+		str[7] = '4';
+		str[8] = '1';
+		str[9] = '2';
+		str[10] = '-';
 		str[11] = '\0';
 	}
 	return (str);
@@ -82,29 +82,28 @@ char	*zero_min(int n, char *str)
 
 char	*ft_itoa(int n)
 {
-	int		vars[3];
+	int		vars[2];
 	char	*res;
 
-	vars[0] = get_size(n) + 1;
-	res = malloc(vars[0] * sizeof(char));
-	ft_bzero(res, vars[0]);
+	res = malloc((get_size(n) + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	ft_bzero(res, (get_size(n) + 1));
 	res = zero_min(n, res);
-	if (res[0] != '\0')
-		return (res);
-	vars[1] = 0;
-	vars[2] = 1;
-	if (n < 0)
+	vars[0] = 0;
+	vars[1] = 1;
+	if (n < 0 && n != -2147483648)
 	{
 		n *= -1;
-		vars[2] = -1;
+		vars[1] = -1;
 	}
-	while (n != 0)
+	while (n > 0)
 	{
-		res[vars[1]++] = n % 10 + '0';
+		res[vars[0]++] = n % 10 + '0';
 		n /= 10;
 	}
-	if (vars[2] == -1)
-		res[vars[1]++] = '-';
+	if (vars[1] == -1)
+		res[vars[0]++] = '-';
 	res = ft_rev_str(res);
 	return (res);
 }

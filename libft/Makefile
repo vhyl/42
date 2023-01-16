@@ -6,7 +6,7 @@
 #    By: vhyl <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/14 22:53:02 by vhyl              #+#    #+#              #
-#    Updated: 2023/01/15 22:32:22 by vhyl             ###   ########.fr        #
+#    Updated: 2023/01/16 19:49:04 by vhyl             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ all: ${NAME}
 
 clean:
 	rm -f ${OBJS}
+	rm -f ${OBJ_BONUS}
 fclean: clean
 		rm -f ${NAME}
 re:		fclean all

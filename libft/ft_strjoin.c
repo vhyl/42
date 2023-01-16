@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:27:56 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/14 14:54:10 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/16 18:36:00 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	j = 0;
 	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!res)
+		return (NULL);
 	while (s1[i] != '\0')
 	{
 		res[i] = s1[i];

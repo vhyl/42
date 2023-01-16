@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:41:06 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/13 21:30:54 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/16 18:34:13 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	char		*s;
 	char		*d;
 
+	if (!dest && !src)
+		return (NULL);
 	i = 0;
 	d = dest;
 	s = (char *)src;

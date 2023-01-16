@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:07:00 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/13 21:55:50 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/16 18:35:35 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strdup(const char *s)
 
 	src_len = ft_strlen((char *)s);
 	str = malloc(sizeof(char) * src_len + 1);
+	if (!str)
+		return (NULL);
 	start = str;
 	while (*s)
 	{
