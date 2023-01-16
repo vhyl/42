@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:56:07 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/15 22:26:26 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/16 20:18:40 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,65 @@ char	*empty(void)
 	return (res);
 }
 
+int	ft_is_in_set(char c, char const *set)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (c == set[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	get_size(char const *s1, char const *set)
+{
+	int	start;
+	int	i;
+	int	end;
+
+	start = 0;
+	i = 0;
+	end = 0;
+	while (ft_is_in_set(s1[i], set))
+	{
+		i++;
+		start++;
+	}
+	while (s1[i])
+		i++;
+	while (ft_is_in_set(s1[i - end - 1], set) && (i - end - 1) > 0)
+		end++;
+	return (i - (start + end));
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		size;
+	int		i;
+	int		j;
+	int		k;
 	char	*res;
-	int		start;
-	int		end;
 
 	if (!s1 || !set)
 		return (NULL);
-	if (*set == 0)
-		return (ft_strdup(s1));
-	start = 0;
-	end = ft_strlen(s1) - 1;
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	while (s1[end] && ft_strchr(set, s1[end]))
-		end--;
-	size = (end - start) + 1;
-	if (size < 1)
+	i = get_size(s1, set);
+	j = 0;
+	k = 0;
+	if (i < 1)
 		return (empty());
-	res = malloc(size * sizeof(char));
+	res = malloc((i + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
-	res = ft_substr(s1, start, size);
+	while (ft_is_in_set(s1[j], set))
+		j++;
+	while (k < i)
+	{
+		res[k] = s1[j + k];
+		k++;
+	}
+	res[k] = '\0';
 	return (res);
 }
