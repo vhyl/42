@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_is_negative(char *str, int *sign)
+static char	*ft_is_negative(char *str, int *sign)
 {
 	int	i;
 

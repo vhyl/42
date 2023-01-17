@@ -58,4 +58,8 @@ fclean: clean
 		rm -f ${NAME}
 re:		fclean all
 
+so:
+	cc -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(SRCS_BONUS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) $(OBJ_BONUS)
+
 .PHONY:		all clean fclean re

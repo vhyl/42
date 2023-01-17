@@ -6,13 +6,13 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:56:07 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/17 14:30:41 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/17 16:42:45 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*empty(void)
+static char	*empty(void)
 {
 	char	*res;
 
@@ -23,7 +23,7 @@ char	*empty(void)
 	return (res);
 }
 
-int	in_set(char c, char const *set)
+static int	in_set(char c, char const *set)
 {
 	unsigned int	i;
 
@@ -37,7 +37,7 @@ int	in_set(char c, char const *set)
 	return (0);
 }
 
-int	get_size(char const *s1, char const *set)
+static int	get_size(char const *s1, char const *set)
 {
 	int	start;
 	int	i;

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	get_size(int n)
+static int	get_size(int n)
 {
 	int	count;
 
@@ -34,7 +34,7 @@ int	get_size(int n)
 	return (count);
 }
 
-char	*ft_rev_str(char *str)
+static char	*ft_rev_str(char *str)
 {
 	char	temp;
 	int		start;
@@ -55,7 +55,7 @@ char	*ft_rev_str(char *str)
 	return (str);
 }
 
-char	*zero_min(int n, char *str)
+static char	*zero_min(int n, char *str)
 {
 	if (n == 0)
 	{
