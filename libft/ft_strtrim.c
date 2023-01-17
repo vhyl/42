@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:56:07 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/16 20:18:40 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/17 14:30:41 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*empty(void)
 	return (res);
 }
 
-int	ft_is_in_set(char c, char const *set)
+int	in_set(char c, char const *set)
 {
 	unsigned int	i;
 
@@ -46,14 +46,14 @@ int	get_size(char const *s1, char const *set)
 	start = 0;
 	i = 0;
 	end = 0;
-	while (ft_is_in_set(s1[i], set))
+	while (in_set(s1[i], set))
 	{
 		i++;
 		start++;
 	}
 	while (s1[i])
 		i++;
-	while (ft_is_in_set(s1[i - end - 1], set) && (i - end - 1) > 0)
+	while (in_set(s1[i - end - 1], set) && (i - end - 1) > 0)
 		end++;
 	return (i - (start + end));
 }
@@ -75,7 +75,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	res = malloc((i + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
-	while (ft_is_in_set(s1[j], set))
+	while (in_set(s1[j], set))
 		j++;
 	while (k < i)
 	{
