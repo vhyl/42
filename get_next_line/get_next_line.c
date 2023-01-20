@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:42:50 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/20 13:26:52 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/20 13:53:35 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,8 @@ char	*get_next_line(int fd)
 	}
 	if (i > 0)
 		i++;
-	if (start[0] == '\n')
-	{
-		start[1] = '\0';
-		return (start);
-	}
 	start[i] = '\0';
-	return ((char *)start);
+	return (start);
 }
 /*
 int main()
