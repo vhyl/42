@@ -6,7 +6,7 @@
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:42:50 by vhyl              #+#    #+#             */
-/*   Updated: 2023/01/20 12:25:37 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/01/20 13:26:52 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,39 @@
 char	*get_next_line(int fd)
 {
 	static char	*buff;
-	static char	*start;
+	char	*start;
 	int	i;
 
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 2));
-	bzero(buff, BUFFER_SIZE);
 	i = 0;
 	if (!buff)
 		return (NULL);
 	start = buff;
-	while (read(fd, buff, 1) && start[i] != '\n' && i < BUFFER_SIZE - 1)
+	while (read(fd, buff, 1) && start[i] != '\n' && i < BUFFER_SIZE)
 	{
 		buff++;
 		i++;
 	}
+	if (i > 0)
+		i++;
+	if (start[0] == '\n')
+	{
+		start[1] = '\0';
+		return (start);
+	}
 	start[i] = '\0';
 	return ((char *)start);
 }
-
 /*
 int main()
 {
 	int op;
 	char *line;
 
-	op = open("tests/test.txt", O_RDONLY);
+	op = open("test/1-brouette.txt", O_RDONLY);
 	int i = 0;
 
-	while (i < 1)
+	while (i < 1000)
 	{
 		line = get_next_line(op);
 		printf("%s", line);
@@ -54,5 +59,4 @@ int main()
 		i++;
 	}
 	close(op);
-}
-*/
+}*/
