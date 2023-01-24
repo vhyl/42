@@ -92,15 +92,15 @@ char	*next_line(char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	*s;
+	static char	*s[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	s = read_input(fd, s);
-	if (!s)
+	s[fd] = read_input(fd, s[fd]);
+	if (!s[fd])
 		return (NULL);
-	line = get_line(s);
-	s = next_line(s);
+	line = get_line(s[fd]);
+	s[fd] = next_line(s[fd]);
 	return (line);
 }
