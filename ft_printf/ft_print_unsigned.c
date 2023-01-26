@@ -20,7 +20,7 @@ static int	get_size(unsigned int n)
 	while (n != 0)
 	{
 		n /= 10;
-
+		size++;
 	}
 	return (size);
 }

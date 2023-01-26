@@ -29,6 +29,7 @@ static char	*ft_itoa_hexa(uintptr_t n)
 {
 	char	*res;
 	int	size;
+	int	temp;
 
 	size = get_size_hexa(n);
 	res = malloc((size + 1) * sizeof(char));
@@ -37,7 +38,11 @@ static char	*ft_itoa_hexa(uintptr_t n)
 	res[size] = '\0';
 	while (n != 0)
 	{
-		res[size - 1] = n % 16 + 'a';
+		temp = n % 16;
+		if (temp < 10)
+			res[size - 1] = temp + '0';
+		else
+			res[size - 1] = temp + 87;	
 		n /= 16;
 		size--;
 	}
@@ -51,7 +56,7 @@ int	ft_print_ptr(uintptr_t n)
 
 	if (n == 0)
 	{
-		write(1, "(nil)", 1);
+		write(1, "(nil)", 5);
 		return (5);
 	}
 	write(1, "0x", 2);

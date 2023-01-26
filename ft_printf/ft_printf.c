@@ -25,6 +25,8 @@ int	ft_conversions(va_list args, char ftype)
 		res = ft_print_ptr(va_arg(args, uintptr_t));
 	else if (ftype == 'd' || ftype == 'i')
 		res = ft_print_decimal(va_arg(args, int));
+	else if (ftype == 'u')
+		res = ft_print_unsigned(va_arg(args, unsigned int));
 	else if (ftype == 'x' || ftype == 'X')
 		res = ft_print_hexa(va_arg(args, int), ftype);
 	else if (ftype == '%')
@@ -52,7 +54,7 @@ int	ft_printf(const char *str, ...)
 			i++;
 		}
 		else
-			res += ft_print_char(str[i]);
+			size += ft_print_char(str[i]);
 		i++;
 	}
 	va_end(args);

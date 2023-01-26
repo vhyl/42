@@ -33,6 +33,7 @@ static char	*ft_itoa_hexa(int n, char fcase)
 {
 	char	*res;
 	int	size;
+	int	temp;
 
 	size = get_size_hexa(n);
 	res = malloc((size + 1) * sizeof(char));
@@ -43,7 +44,11 @@ static char	*ft_itoa_hexa(int n, char fcase)
 		res[0] = '-';
 	while (n != 0)
 	{
-		res[size - 1] = n % 16 + fcase;
+		temp = n % 16;
+		if (temp < 10)
+			res[size - 1] = temp + '0';
+		else
+			res[size - 1] = temp + fcase;	
 		n /= 16;
 		size--;
 	}
@@ -61,10 +66,10 @@ int	ft_print_hexa(int n, char fcase)
 		return (1);
 	}
 	if (fcase == 'x')
-		fcase = 'a';
+		fcase = 87;
 	else
-		fcase = 'A';
-	res = ft__itoa_hexa(n, fcase);
+		fcase = 55;
+	res = ft_itoa_hexa(n, fcase);
 	len = ft_print_string(res);
 	free(res);
 	return (len);
