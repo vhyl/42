@@ -2,7 +2,7 @@
 
 void	push(int value, t_list **stack)
 {
-	t_list	*temp = (t_list *)malloc(sizeof(t_list *));
+	t_list	*temp = (t_list *)malloc(sizeof(t_list));
 	temp->data = value;
 	temp->next= *stack;
 	*stack = temp;
@@ -11,31 +11,34 @@ void	push(int value, t_list **stack)
 void	pop(t_list **stack)
 {
 	t_list	*temp;
-	if (stack == NULL)
+	if (*stack == NULL)
 		return;
 	temp = *stack;
 	*stack = (*stack)->next;
 	free(temp);
 }
 
-void	rotate(t_list **stack)
+void    rotate(t_list **stack)
 {
-	int	temp;
-	t_list	*temp_stack;
+        int     temp;
+        t_list  *temp_stack;
 
-	temp = (*stack)->data;
-	pop(stack);
-	while (*stack != NULL)
-	{
-		push((*stack)->data, &temp_stack);
-		pop(stack);
-	}
-	push(temp, stack);
-	while (temp_stack != NULL)
-	{
-		push(temp_stack->data, stack);
-		pop(&temp_stack);
-	}
+	temp_stack = NULL;
+        if (!(*stack) || !((*stack)->next))
+                return ;
+        temp = (*stack)->data;
+        pop(stack);
+        while (*stack != NULL)
+        {
+                push((*stack)->data, &temp_stack);
+                pop(stack);
+        }
+        push(temp, stack);
+        while (temp_stack != NULL)
+        {
+                push(temp_stack->data, stack);
+                pop(&temp_stack);
+        }
 }
 
 void	swap(t_list **stack)
@@ -43,6 +46,8 @@ void	swap(t_list **stack)
 	int	temp1;
 	int	temp2;
 
+	if (!(*stack) || !((*stack)->next))
+		return ;
 	temp1 = (*stack)->data;
 	pop(stack);
 	temp2 = (*stack)->data;
@@ -53,9 +58,12 @@ void	swap(t_list **stack)
 
 void	reverse_rotate(t_list **stack)
 {
-	int	temp;
 	t_list	*temp_stack;
+	int	temp;
 
+	temp_stack = NULL;
+	if (!(*stack) || !((*stack)->next))
+		return ;
 	while ((*stack)->next != NULL)
 	{
 		push((*stack)->data, &temp_stack);

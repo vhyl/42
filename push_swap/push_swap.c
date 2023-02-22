@@ -14,8 +14,9 @@ void	sb(t_list **b)
 
 void	ss(t_list **a, t_list **b)
 {
-	sa(a);
-	sb(b);
+	swap(a);
+	swap(b);
+	write(1, "ss\n", 3);
 }
 
 void	pa(t_list **a, t_list **b)

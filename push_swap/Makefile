@@ -1,4 +1,5 @@
-SRCS = operations.c push_swap.c rotate.c reverse_rotate.c fill.c main.c
+SRCS = operations.c push_swap.c rotate.c reverse_rotate.c fill.c main.c \
+       operations2.c sort.c
 OBJS = ${SRCS:.c=.o}
 INC = push_swap.h
 NAME = push_swap
