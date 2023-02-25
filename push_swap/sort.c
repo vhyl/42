@@ -36,11 +36,11 @@ int	find_min(t_list *stack)
 	int	min_pos;
 
 	i = 0;
-	min = -2147483648;
+	min = 2147483647;
 	min_pos = 0;
 	while (stack)
 	{
-		if (min < stack->data)
+		if (min > stack->data)
 		{
 			min = stack->data;
 			min_pos = i;
@@ -74,6 +74,7 @@ void	ft_sort(t_list **a, t_list **b, int size)
 				min--;
 			}
 		}
+		printf(" %d ", (*a)->data);
 		pb(a, b);
 		size--;
 	}
@@ -81,21 +82,21 @@ void	ft_sort(t_list **a, t_list **b, int size)
 
 void	ft_sort_three(t_list **a)
 {
-	if (is_sorted_dsc(*a))
+	if (is_sorted_asc(*a))
 		return ;
 	if (compare_two(*a) && find_min(*a) == 1)
 	{
-		if ((*a)->data < (*a)->next->next->data)
+		if ((*a)->data > (*a)->next->next->data)
 			ra(a);
 		else
 			sa(a);
 	}
-	else if (is_sorted_asc(*a))
+	else if (is_sorted_dsc(*a))
 	{
 		sa(a);
 		rra(a);
 	}
-	else if (find_min(*a) == 0)
+	else if (find_min(*a) == 2)
 		rra(a);
 	else
 	{

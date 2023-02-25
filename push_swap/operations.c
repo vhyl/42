@@ -43,17 +43,13 @@ void    rotate(t_list **stack)
 
 void	swap(t_list **stack)
 {
-	int	temp1;
-	int	temp2;
+	int	temp;
 
 	if (!(*stack) || !((*stack)->next))
 		return ;
-	temp1 = (*stack)->data;
-	pop(stack);
-	temp2 = (*stack)->data;
-	pop(stack);
-	push(temp2, stack);
-	push(temp1, stack);
+	temp = (*stack)->data;
+	(*stack)->data = (*stack)->next->data;
+	(*stack)->next->data = temp;
 }
 
 void	reverse_rotate(t_list **stack)

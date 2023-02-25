@@ -22,10 +22,11 @@ int main(int argc, char *argv[])
 //	}
 	while (b)
 		pa(&a,&b);
-//	while (a)
-//	{
-//		printf("\n %d ", a->data);
-//		a = a->next;
-//	}
+/*	while (a)
+	{
+		printf("\n %d ", a->data);
+		a = a->next;
+	}
+*/
 	return (0);
 }

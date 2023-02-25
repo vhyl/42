@@ -28,15 +28,15 @@ void	fill(int argc, char *argv[], t_list **stack)
 	int	temp;
 	int	error;
 
-	i = 1;
+	i = argc - 1;
 	error = 0;
-	while (i < argc)
+	while (i > 0)
 	{
 		temp = ft_atoi(argv[i]);
 		if (temp == 0 && argv[i][0] != '0')
 			error = 1;
 		push(temp, stack);
-		i++;
+		i--;
 	}
 	check_duplicates(*stack, &error);
 	if (error)
