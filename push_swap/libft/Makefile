@@ -6,7 +6,7 @@
 #    By: vhyl <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/14 22:53:02 by vhyl              #+#    #+#              #
-#    Updated: 2023/01/16 19:49:04 by vhyl             ###   ########.fr        #
+#    Updated: 2023/02/28 15:02:08 by vhyl             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = ft_atoi.c ft_strnstr.c ft_memmove.c ft_memchr.c ft_strrchr.c \
 	ft_strncmp.c ft_strdup.c ft_calloc.c ft_itoa.c ft_putchar_fd.c \
 	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_substr.c \
 	ft_strjoin.c ft_strmapi.c  ft_split.c ft_strchr.c ft_striteri.c \
-	ft_strtrim.c
+	ft_strtrim.c ft_atoi2.c
 		
 OBJS = ${SRCS:.c=.o}
 

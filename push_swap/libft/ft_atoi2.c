@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhyl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 14:36:50 by vhyl              #+#    #+#             */
-/*   Updated: 2023/02/25 17:59:53 by vhyl             ###   ########.fr       */
+/*   Created: 2023/02/28 15:00:19 by vhyl              #+#    #+#             */
+/*   Updated: 2023/02/28 15:00:29 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,24 @@ static char	*ft_is_negative(char *str, int *sign)
 	return (&str[i]);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi2(const char *str)
 {
 	int	i;
-	int	res;
+	long	res;
 	int	sign;
 
 	i = 0;
 	res = 0;
 	str = ft_is_negative((char *)str, &sign);
+	if (!(*str))
+		return (2147483648);
 	while (str[i] != '\0')
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			res = res * 10 + str[i] - '0';
 		else
-		{
-			if (sign == -1)
-				return (res * -1);
-			return (res);
-		}
+			return (2147483648);
 		i++;
 	}
-	if (sign == -1)
-		return (res * -1);
-	return (res);
+	return (res * (long)sign);
 }

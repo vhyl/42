@@ -74,7 +74,6 @@ void	ft_sort(t_list **a, t_list **b, int size)
 				min--;
 			}
 		}
-		printf(" %d ", (*a)->data);
 		pb(a, b);
 		size--;
 	}
@@ -103,4 +102,37 @@ void	ft_sort_three(t_list **a)
 		sa(a);
 		ra(a);
 	}
+}
+void	print_stack(t_list *stack)
+{
+	while (stack)
+	{
+		printf(" %d ", stack->data);
+		stack = stack->next;
+	}
+	printf("\n");
+}
+void	ft_sort_five(t_list **a, t_list **b)
+{
+	pb(a, b);
+	pb(a, b);
+	ft_sort_three(a);
+	pa(a, b);
+	//print_stack(*a);
+/*	while (!is_sorted_asc(*a))
+	{
+		rra(a);
+//		print_stack(*a);
+//	}
+	pa(a, b);
+	print_stack(*a);
+	rra(a);
+	rra(a);
+	rra(a);
+	print_stack(*a);
+//	while (!is_sorted_asc(*a))
+//	{
+		//rra(a);
+//		print_stack(*a);
+//	}*/
 }
