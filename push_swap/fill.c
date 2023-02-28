@@ -66,9 +66,9 @@ int	check_input(char *str)
 	return (0);
 }
 
-void	fill_num(char *str, t_list **stack)
+void	fill_num(char *str, t_list **stack, int *error)
 {
-	int	temp;
+	long	temp;
 	t_list	*temp_stack;
 
 	temp_stack = NULL;
@@ -77,8 +77,10 @@ void	fill_num(char *str, t_list **stack)
 	while (*str)
 	{
 		temp = ft_atoi(str);
+		if (temp < -2147483648 || temp > 2147483647)
+			*error = 1;
 		str++;
-		push(temp, &temp_stack);
+		push((int)temp, &temp_stack);
 		while ((*str >= '0' && *str <= '9') || *str == '-')
 			str++;
 	}
@@ -98,7 +100,7 @@ int	fill_arg(char *str, t_list **stack)
 	if (check_input(str))
 		error = 1;
 	else
-		fill_num(str, stack);
+		fill_num(str, stack, &error);
 	if (check_duplicates(*stack) || error)
 	{
 		write(2, "Error\n", 6);

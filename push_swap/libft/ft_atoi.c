@@ -29,10 +29,10 @@ static char	*ft_is_negative(char *str, int *sign)
 	return (&str[i]);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int	i;
-	int	res;
+	long	res;
 	int	sign;
 
 	i = 0;
@@ -42,12 +42,10 @@ int	ft_atoi(const char *str)
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			res = res * 10 + str[i] - '0';
+		else if ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+			return (res * sign);
 		else
-		{
-			if (sign == -1)
-				return (res * -1);
-			return (res);
-		}
+			return (2147483648);
 		i++;
 	}
 	if (sign == -1)
