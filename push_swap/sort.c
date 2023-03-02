@@ -114,17 +114,68 @@ void	print_stack(t_list *stack)
 	}
 	printf("\n");
 }
+
+int	find_pos(t_list *a, int num)
+{
+	int	pos;
+
+	pos = 0;
+	if (top(a) > num)
+		return (pos);
+	while (a->next)
+	{
+		pos++;
+		if (a->data < num && a->next->data > num)
+			return (pos);
+		a = a->next;
+	}
+	pos++;
+	return (pos);
+}
+
 void	ft_sort_five(t_list **a, t_list **b)
 {
+	int	temp;
+
+	temp = 0;
 	pb(a, b);
 	pb(a, b);
 	ft_sort_three(a);
-	if (top(*b) < top(*a))
-		pa(a, b);
-	else if (top(*b) > (*a)->next->next->data)
+	if ((*b)->data > (*b)->next->data)
+		sb(b);
+	temp = find_pos((*a), top(*b));
+	pa(a, b);
+	if (temp == 3)
+		ra(a);
+	else if (temp == 2)
 	{
-		pa(a, b);
+		rra(a);
+		sa(a);
+		ra(a);
 		ra(a);
 	}
-	print_stack(*a);
+	else if (temp == 1)
+		sa(a);
+	temp = find_pos((*a), top(*b));
+	if (temp != 2 && temp != 3)
+		pa(a, b);
+	if (temp == 4)
+		ra(a);
+	if (temp == 3)
+	{
+		rra(a);
+		pa(a, b);
+		ra(a);
+		ra(a);
+	}
+	else if (temp == 2)
+	{
+		ra(a);
+		ra(a);
+		pa(a, b);
+		rra(a);
+		rra(a);
+	}
+	else if (temp == 1)
+		sa(a);
 }

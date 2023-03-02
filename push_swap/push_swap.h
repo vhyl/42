@@ -35,4 +35,5 @@ void	ft_sort(t_list **a, t_list **b, int size);
 void	ft_sort_three(t_list **a);
 void    ft_sort_five(t_list **a, t_list **b);
 int	fill_arg(char *str, t_list **stack);
+int	is_sorted_asc(t_list *stack);
 #endif

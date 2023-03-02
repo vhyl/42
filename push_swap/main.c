@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
 	else
 		if (fill(argc, argv, &a))
 			return (0);
+	if (is_sorted_asc(a))
+		return (0);
 	argc = stack_size(a) + 1;
 	if (argc == 4)
 		ft_sort_three(&a);
