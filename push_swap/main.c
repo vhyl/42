@@ -32,13 +32,11 @@ int main(int argc, char *argv[])
 	if (is_sorted_asc(a))
 		return (0);
 	argc = stack_size(a) + 1;
-	if (argc == 4)
-		ft_sort_three(&a);
-	else if (argc == 6)
-		ft_sort_five(&a, &b);
-	else
-		ft_sort(&a, &b, argc - 2);
-	while (b)
-		pa(&a,&b);
+	//if (argc == 4)
+	//	ft_sort_three(&a);
+	//else if (argc == 6)
+	//	ft_sort_five(&a, &b);
+	//else
+	ft_sort(&a, &b, argc - 2);
 	return (0);
 }

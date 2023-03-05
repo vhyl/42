@@ -1,4 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vhyl <vhyl@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/04 21:12:18 by vhyl              #+#    #+#             */
+/*   Updated: 2023/03/05 22:21:45 by vhyl             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
+void	print_stack(t_list *stack)
+{
+	while (stack)
+	{
+		printf(" %d ", stack->data);
+		stack = stack->next;
+	}
+	printf("\n");
+}
 
 int	compare_two(t_list *stack)
 {
@@ -51,34 +73,95 @@ int	find_min(t_list *stack)
 	return (min_pos);
 }
 
-void	ft_sort(t_list **a, t_list **b, int size)
+int	find_max(t_list *stack)
 {
-	int	min;
-	
-	if (size == 0)
-		return ;
-	while (!(empty(*a)))
+	int	i;
+	int	max;
+	int	max_pos;
+
+	i = 0;
+	max = -2147483648;
+	max_pos = 0;
+	while (stack)
 	{
-		min = find_min(*a);
-		if (min > size / 2)
+		if (max < stack->data)
 		{
-			while (min <= size)
+			max = stack->data;
+			max_pos = i;
+		}
+		i++;
+		stack = stack->next;
+	}
+	return (max_pos);
+}
+
+void	move_min(t_list **a, t_list **b, int *size, int *min)
+{
+		if (*min > *size / 2)
+		{
+			while (*min <= *size)
 			{
 				rra(a);
-				min++;
+				*min = *min + 1;
 			}
 		}
 		else
 		{
-			while (min != 0)
+			while (*min != 0)
 			{
 				ra(a);
-				min--;
+				*min = *min - 1;
 			}
 		}
 		pb(a, b);
-		size--;
+		*size = *size - 1;	
+}
+
+void	move_max(t_list **a, int size, int max)
+{
+		if (max > size / 2)
+		{
+			while (max <= size)
+			{
+				rra(a);
+				max++;
+			}
+		}
+		else
+		{
+			while (max != -1)
+			{
+				ra(a);
+				max--;
+			}
+		}	
+}
+
+void	ft_sort(t_list **a, t_list **b, int size)
+{
+	int	min;
+	int	max;
+	int start_size;
+	
+	if (size == 0)
+		return ;
+	start_size = size;
+	while (!is_sorted_asc(*a))
+	{
+		min = find_min(*a);
+		max = find_max(*a);
+
+		//printf("Min: %d, Max: %d, Size: %d\n", min, max, size);
+		if (min < max || size - min > size - max || max == size)
+			move_min(a, b, &size, &min);
+		else
+			move_max(a, size, max);
 	}
+	while (*b)
+		pa(a, b);
+	//print_stack(*a);
+	//ft_sort_three(a);
+	//if max is on end find next max
 }
 
 void	ft_sort_three(t_list **a)
@@ -105,77 +188,46 @@ void	ft_sort_three(t_list **a)
 		ra(a);
 	}
 }
-void	print_stack(t_list *stack)
-{
-	while (stack)
-	{
-		printf(" %d ", stack->data);
-		stack = stack->next;
-	}
-	printf("\n");
-}
 
-int	find_pos(t_list *a, int num)
+void	ft_small_sort(t_list **a, t_list **b, int size)
 {
-	int	pos;
-
-	pos = 0;
-	if (top(a) > num)
-		return (pos);
-	while (a->next)
+	int	min;
+	
+	if (size == 0)
+		return ;
+	while (size > 2)
 	{
-		pos++;
-		if (a->data < num && a->next->data > num)
-			return (pos);
-		a = a->next;
+		min = find_min(*a);
+		if (min > size / 2)
+		{
+			while (min <= size)
+			{
+				rra(a);
+				min++;
+			}
+		}
+		else
+		{
+			while (min != 0)
+			{
+				ra(a);
+				min--;
+			}
+		}
+		pb(a, b);
+		size--;
 	}
-	pos++;
-	return (pos);
 }
 
 void	ft_sort_five(t_list **a, t_list **b)
 {
 	int	temp;
+	int	i;
 
 	temp = 0;
-	pb(a, b);
-	pb(a, b);
+	i = 0;
+	ft_small_sort(a, b, 4);
 	ft_sort_three(a);
-	if ((*b)->data > (*b)->next->data)
-		sb(b);
-	temp = find_pos((*a), top(*b));
 	pa(a, b);
-	if (temp == 3)
-		ra(a);
-	else if (temp == 2)
-	{
-		rra(a);
-		sa(a);
-		ra(a);
-		ra(a);
-	}
-	else if (temp == 1)
-		sa(a);
-	temp = find_pos((*a), top(*b));
-	if (temp != 2 && temp != 3)
-		pa(a, b);
-	if (temp == 4)
-		ra(a);
-	if (temp == 3)
-	{
-		rra(a);
-		pa(a, b);
-		ra(a);
-		ra(a);
-	}
-	else if (temp == 2)
-	{
-		ra(a);
-		ra(a);
-		pa(a, b);
-		rra(a);
-		rra(a);
-	}
-	else if (temp == 1)
-		sa(a);
+	pa(a, b);
 }
