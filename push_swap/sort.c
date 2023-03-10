@@ -95,33 +95,33 @@ int	find_max(t_list *stack)
 	return (max_pos);
 }
 
-void	move_min(t_list **a, t_list **b, int *size, int *min)
+void	move_min(t_list **a, t_list **b, int *size, int min)
 {
-		if (*min > *size / 2)
+		if (min > *size / 2)
 		{
-			while (*min <= *size)
+			while (min <= *size)
 			{
 				rra(a);
-				*min = *min + 1;
+				min++;
 			}
 		}
 		else
 		{
-			while (*min != 0)
+			while (min != 0)
 			{
 				ra(a);
-				*min = *min - 1;
+				min--;
 			}
 		}
 		pb(a, b);
 		*size = *size - 1;	
 }
 
-void	move_max(t_list **a, int size, int max)
+void	move_max(t_list **a, t_list **b, int *size, int max)
 {
-		if (max > size / 2)
+		if (max > *size / 2)
 		{
-			while (max <= size)
+			while (max <= *size)
 			{
 				rra(a);
 				max++;
@@ -129,36 +129,59 @@ void	move_max(t_list **a, int size, int max)
 		}
 		else
 		{
-			while (max != -1)
+			while (max != 0)
 			{
 				ra(a);
 				max--;
 			}
-		}	
+		}
+		pb(a, b);
+		rb(b);
+		*size = *size - 1;	
 }
 
 void	ft_sort(t_list **a, t_list **b, int size)
 {
 	int	min;
 	int	max;
-	int start_size;
-	
+
 	if (size == 0)
 		return ;
-	start_size = size;
 	while (!is_sorted_asc(*a))
 	{
 		min = find_min(*a);
 		max = find_max(*a);
 
 		//printf("Min: %d, Max: %d, Size: %d\n", min, max, size);
-		if (min < max || size - min > size - max || max == size)
-			move_min(a, b, &size, &min);
+		if (min < size / 2 && max < size / 2)
+		{
+			if (min < max)
+				move_min(a, b, &size, min);
+			else
+				move_max(a, b, &size, max);
+		}
+		else if (min > size / 2 && max > size / 2)
+		{
+			if (min > max)
+				move_min(a, b, &size, min);
+			else
+				move_max(a, b, &size, max);
+		}
 		else
-			move_max(a, size, max);
+			move_min(a, b, &size, min);
+		//printf("Stack A\n");
+		//print_stack(*a);
+		//printf("Stack B\n");
+		//print_stack(*b);
 	}
-	while (*b)
+	while (!is_sorted_dsc(*b))
 		pa(a, b);
+	while (*b)
+	{
+		rrb(b);
+		pa(a, b);
+		ra(a);
+	}
 	//print_stack(*a);
 	//ft_sort_three(a);
 	//if max is on end find next max
@@ -221,11 +244,6 @@ void	ft_small_sort(t_list **a, t_list **b, int size)
 
 void	ft_sort_five(t_list **a, t_list **b)
 {
-	int	temp;
-	int	i;
-
-	temp = 0;
-	i = 0;
 	ft_small_sort(a, b, 4);
 	ft_sort_three(a);
 	pa(a, b);
