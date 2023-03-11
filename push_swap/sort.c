@@ -6,12 +6,12 @@
 /*   By: vhyl <vhyl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 21:12:18 by vhyl              #+#    #+#             */
-/*   Updated: 2023/03/05 22:21:45 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/03/11 19:39:54 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <math.h>
 void	print_stack(t_list *stack)
 {
 	while (stack)
@@ -168,7 +168,12 @@ void	ft_sort(t_list **a, t_list **b, int size)
 				move_max(a, b, &size, max);
 		}
 		else
-			move_min(a, b, &size, min);
+		{
+			if (abs(min - size / 2) > abs(max - size / 2))
+				move_min(a, b, &size, min);
+			else
+				move_max(a, b, &size, max);
+		}
 		//printf("Stack A\n");
 		//print_stack(*a);
 		//printf("Stack B\n");
