@@ -6,12 +6,75 @@
 /*   By: vhyl <vhyl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 21:12:18 by vhyl              #+#    #+#             */
-/*   Updated: 2023/03/11 19:39:54 by vhyl             ###   ########.fr       */
+/*   Updated: 2023/03/12 17:53:39 by vhyl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <math.h>
+
+// int	count_chunks(int size)
+// {
+// 	int	i;
+
+// 	size++;
+// 	i = 0;
+// 	while (size > 0)
+// 	{
+// 		i++;
+// 		size /= 2;
+// 	}
+// 	return (i);
+// }
+
+int	*bubble_sort(int arr[], int size)
+{
+	int temp;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i <= size)
+	{
+		j = 0;
+		while (j <= size - i)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (arr);
+}
+
+int	*sort_arr(t_list *stack, int size)
+{
+	int	*arr;
+	int	i;
+
+	arr = malloc(sizeof(int) * size);
+	i = 0;
+	while (stack)
+	{
+		arr[i] = stack->data;
+		stack = stack->next;
+		i++;
+	}
+	arr = bubble_sort(arr, size);
+	i = 0;
+	// while (i <= size)
+	// {
+	// 	printf(" %d ", arr[i]);
+	// 	i++;
+	// }
+	return (arr);
+}
+
 void	print_stack(t_list *stack)
 {
 	while (stack)
@@ -145,6 +208,8 @@ void	ft_sort(t_list **a, t_list **b, int size)
 	int	min;
 	int	max;
 
+	//sort_arr(*a, size);
+	//printf("Chunks: %d\n", count_chunks(size));
 	if (size == 0)
 		return ;
 	while (!is_sorted_asc(*a))
@@ -179,14 +244,14 @@ void	ft_sort(t_list **a, t_list **b, int size)
 		//printf("Stack B\n");
 		//print_stack(*b);
 	}
-	while (!is_sorted_dsc(*b))
-		pa(a, b);
-	while (*b)
-	{
-		rrb(b);
-		pa(a, b);
-		ra(a);
-	}
+	// while (!is_sorted_dsc(*b))
+	// 	pa(a, b);
+	// while (*b)
+	// {
+	// 	rrb(b);
+	// 	pa(a, b);
+	// 	ra(a);
+	// }
 	//print_stack(*a);
 	//ft_sort_three(a);
 	//if max is on end find next max
