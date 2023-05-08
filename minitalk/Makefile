@@ -41,12 +41,10 @@ client: $(CLIENT_OBJS)
 clean:
 	@rm -rf $(OBJS)
 	@cd libft && make clean
-	@$(CLEANED)
 
 fclean: clean
 	@rm -rf $(SERVER_NAME) $(CLIENT_NAME)
 	@cd libft && make fclean
-	@$(FCLEANED)
 
 .c.o:
 	@${GCC} ${FLAGS} $(INCLUDE) -c $< -o ${<:.c=.o}
